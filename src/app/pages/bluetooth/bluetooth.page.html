@@ -1,14 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>XinHuan</ion-title>
-      <ion-item slot="end">
-        <ion-item>
-          <ion-label>
-              <ion-icon size="large" name="bluetooth"></ion-icon>
-          </ion-label>
-          <ion-toggle (ionChange)="toggleBle($event)" [(ngModel)]="ble"></ion-toggle>
-        </ion-item>
-      </ion-item>
   </ion-toolbar>
 </ion-header>
 
@@ -23,15 +15,16 @@
     <!-- Scan Button -->
     <ion-button
       expand="block"
-      [disabled]="bluetoothIsScanning"
-      (click)="scanForBluetoothDevices()"
+      [disabled]="IsScanning"
+      (click)="scan()"
     >
-      {{ bluetoothIsScanning ? 'Scanning...' : 'Scan for Bluetooth Devices' }}
+      {{ IsScanning ? 'Scanning...' : 'Scan' }}
+        <ion-icon slot="icon-only" name="bluetooth"></ion-icon>
     </ion-button>
   </ion-list>
 
   <ion-list>
-    <ng-container *ngIf="bluetoothScanResults.length > 0">
+    <!-- <ng-container *ngIf="bluetoothScanResults.length > 0">
       <ion-item *ngFor="let scanResult of bluetoothScanResults">
         <ion-label>
           <h2>{{ scanResult.device?.name ?? 'No Name' }}</h2>
@@ -47,13 +40,13 @@
           </ion-button>
         </ion-buttons>
       </ion-item>
-    </ng-container>
+    </ng-container> -->
 
     <!-- Show connected device -->
-    <ng-container *ngIf="bluetoothConnectedDevice" style="margin-top: 40px">
+    <!-- <ng-container *ngIf="bluetoothConnectedDevice" style="margin-top: 40px">
       <ion-list-header>
         <h2>CONNECTED TO: {{ bluetoothConnectedDevice.device.name }} ✅</h2>
       </ion-list-header>
-    </ng-container>
+    </ng-container> -->
   </ion-list>
 </ion-content>

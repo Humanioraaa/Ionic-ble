@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public appPages = [
     { title: 'Bluetooth', url: 'bluetooth', icon: 'bluetooth' },
-    { title: 'Graph', url: 'graph', icon: 'paper-plane' },
-    { title: 'Info', url: 'info', icon: 'heart' },
+    { title: 'Graph', url: 'graph', icon: 'stats-chart' },
+    { title: 'Info', url: 'info', icon: 'information-circle' },
   ];
   constructor() {}
 }

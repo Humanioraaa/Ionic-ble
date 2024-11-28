@@ -1,22 +1,45 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Bluetooth Connection</ion-title>
+    <ion-title>bluetooth</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-button
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">bluetooth</ion-title>
+
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    <ion-button
       expand="block"
       [disabled]="bluetoothIsScanning"
       (click)="scanForBluetoothDevices()"
     >
       {{ bluetoothIsScanning?"Scaning":"Scan for bluetooth devices" }}
     </ion-button>
-  <ion-button *ngIf="isConnected" (click)="disconnect()">Disconnect</ion-button>
+  </ion-list>
+<ion-list>
+  <ng-container *ngIf="bluetoothScanResults.length>0">
+    <ion-item *ngFor="let scanResult of bluetoothScanResults">
+      <ion-label>
+        <h2>{{scanResult.device?.name ?? "NO name" }}</h2>
+        <p style="font-size: 8px">{{scanResult.device.deviceId}}</p>
+      </ion-label>
 
-  <ion-item>
-    <ion-label>Status: {{ isConnected ? 'Connected' : 'Not Connected' }}</ion-label>
-  </ion-item>
+      <!-- <ion-button
+        (click)="disconnectFromBluetoothDevice(scanResult)"
+        color="danger"
+        slot="end"
+      >
+        Disconnect
+      </ion-button> -->
 
-  <ion-button *ngIf="isConnected" (click)="navigateToGraph()">Go to Graph</ion-button>
+      <ion-button (click)="connectToBluetoothDevice(scanResult)" slot="end">
+        Connect
+      </ion-button>
+    </ion-item>
+  </ng-container>
+</ion-list>
 </ion-content>

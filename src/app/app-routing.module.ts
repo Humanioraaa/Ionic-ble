@@ -34,7 +34,11 @@ const routes: Routes = [
   { path: '', redirectTo: 'bluetooth', pathMatch: 'full' },
   { path: 'bluetooth', loadChildren: () => import('./pages/bluetooth/bluetooth.module').then(m => m.BluetoothPageModule) },
   { path: 'graph', loadChildren: () => import('./pages/graph/graph.module').then(m => m.GraphPageModule) },
-  { path: 'info', loadChildren: () => import('./pages/info/info.module').then(m => m.InfoPageModule) },
+  { path: 'info', loadChildren: () => import('./pages/info/info.module').then(m => m.InfoPageModule) },  {
+    path: 'bluetooth',
+    loadChildren: () => import('./pages/bluetooth/bluetooth.module').then( m => m.BluetoothPageModule)
+  },
+
 ];
 
 

@@ -1,6 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Bluetooth</ion-title>
+    <ion-title>XinHuan</ion-title>
+      <ion-item slot="end">
+        <ion-item>
+          <ion-label>
+              <ion-icon size="large" name="bluetooth"></ion-icon>
+          </ion-label>
+          <ion-toggle (ionChange)="toggleBle($event)" [(ngModel)]="ble"></ion-toggle>
+        </ion-item>
+      </ion-item>
   </ion-toolbar>
 </ion-header>
 

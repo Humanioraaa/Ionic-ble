@@ -12,8 +12,11 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./bluetooth.page.scss'],
 })
 export class BluetoothPage implements OnInit {
+  devices:any[]=[]
+  ble:boolean=false
   bluetoothScanResults: ScanResult[] = [];
   bluetoothIsScanning = false;
+  deviceObject=this.devices;
 
   bluetoothConnectedDevice?: ScanResult;
 
@@ -23,12 +26,53 @@ export class BluetoothPage implements OnInit {
   constructor(public toastController: ToastController, public router: Router) {}
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
-  ngOnInit(): void {}
+  ngOnInit() {
+
+  }
+
+  toggleBle(event: any){
+    if(this.ble){
+      this.enableBluetooth();
+    } else {
+      this.disableBluetooth();
+    }
+  }
+
+  enableBluetooth(){
+    BleClient.enable();
+  }
+
+  disableBluetooth(){
+    BleClient.disable();
+  }
+
+  async scan() {
+    try {
+      await BleClient.initialize();
+      await BleClient.initialize({ androidNeverForLocation: true });
+      await BleClient.requestLEScan(
+        {
+          //services: [HEART_RATE_SERVICE],
+        },
+        (result) => {
+          console.log('received new scan result', result);
+        }
+      );
+
+      setTimeout(async () => {
+        await BleClient.stopLEScan();
+        console.log('stopped scanning');
+      }, 5000);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   async scanForBluetoothDevices() {
     try {
       // Initialize the Bluetooth client
       await BleClient.initialize();
+      BleClient.isEnabled();
 
       this.bluetoothScanResults = [];
       this.bluetoothIsScanning = true;

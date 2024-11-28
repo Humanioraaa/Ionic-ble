@@ -10,6 +10,5 @@ export class AppComponent {
     { title: 'Graph', url: 'graph', icon: 'paper-plane' },
     { title: 'Info', url: 'info', icon: 'heart' },
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
   constructor() {}
 }

@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Bluetooth Connection</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button *ngIf="!isConnected" (click)="scanForDevices()">Scan for Devices</ion-button>
+  <ion-button *ngIf="isConnected" (click)="disconnect()">Disconnect</ion-button>
+
+  <ion-item>
+    <ion-label>Status: {{ isConnected ? 'Connected' : 'Not Connected' }}</ion-label>
+  </ion-item>
+
+  <ion-button *ngIf="isConnected" (click)="navigateToGraph()">Go to Graph</ion-button>
+</ion-content>

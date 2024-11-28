@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Device Info</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button (click)="getDeviceInfo('deviceId')">Get Device Info</ion-button>
+
+  <ion-item *ngIf="deviceInfo">
+    <ion-label>Device ID: {{ deviceInfo.deviceId }}</ion-label>
+  </ion-item>
+</ion-content>

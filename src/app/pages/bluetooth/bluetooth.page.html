@@ -28,18 +28,24 @@
         <p style="font-size: 8px">{{scanResult.device.deviceId}}</p>
       </ion-label>
 
-      <!-- <ion-button
+      <ion-button
         (click)="disconnectFromBluetoothDevice(scanResult)"
         color="danger"
         slot="end"
       >
         Disconnect
-      </ion-button> -->
+      </ion-button>
 
       <ion-button (click)="connectToBluetoothDevice(scanResult)" slot="end">
         Connect
       </ion-button>
     </ion-item>
+  </ng-container>
+
+  <ng-container *ngIf="bluetoothConnectedDevice" style="margin-top: 40px">
+    <ion-list-header>
+      CONNECTED TO: {{bluetoothConnectedDevice.device.name}} ✅
+    </ion-list-header>
   </ng-container>
 </ion-list>
 </ion-content>

@@ -79,6 +79,17 @@ export class BluetoothPage implements OnInit {
     }
   }
 
+  async disconnectFromBluetoothDevice(scanResult: ScanResult) {
+    const device = scanResult.device;
+    try {
+      await BleClient.disconnect(scanResult.device.deviceId);
+      const deviceName = device.name ?? device.deviceId;
+      alert(`disconnected from device ${deviceName}`);
+    } catch (error) {
+      console.error('disconnectFromDevice', error);
+    }
+  }
+
   onBluetooDeviceDisconnected(disconnectedDeviceId: string) {
     alert(`Diconnected ${disconnectedDeviceId}`);
     this.bluetoothConnectedDevice = undefined;

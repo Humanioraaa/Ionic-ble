@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Route } from '@angular/router';
 import { BluetoothLe } from '@capacitor-community/bluetooth-le';
 import { NavController } from '@ionic/angular';
 
@@ -10,22 +11,48 @@ import { NavController } from '@ionic/angular';
 export class BluetoothPage {
   device: any = null;
   isConnected = false;
+  bluetoothIsScanning = false;
   ecgData: number[] = [];
 
-  constructor(private navCtrl: NavController) {}
+  bluetoothScanResults: ScanResult[] = [];
+  bluetoothConnectedDevice?: ScanResult;
 
-  async scanForDevices() {
+
+  readonly serviceArduino =
+  '4fafc201-1fb5-459e-8fcc-c5c9c331914b'.toUpperCase();
+
+  constructor(private navCtrl: NavController, public router: Route) {};
+
+  async scanForBluetoothDevices() {
     try {
-      const result = await BluetoothLe.requestDevice({
-        services: ['4fafc201-1fb5-459e-8fcc-c5c9c331914b'],
-        optionalServices: ['beb5483e-36e1-4688-b7f5-ea07361b26a8'],
-      });
-      this.device = result;
-      console.log('Device found:', this.device);
-      this.connectToDevice();
+      await BluetoothLe.initialize();
+
+      this.bluetoothScanResults = [];
+      this.bluetoothIsScanning = true;
+
+      // passing goProControlAndQueryServiceUUID will show only GoPro devices
+      // read more here https://github.com/gopro/OpenGoPro/discussions/41#discussion-3530421
+      // but if you pass empty array to services it will show all nearby bluetooth devices
+      await BluetoothLe.requestLEScan(
+        { services: [this.serviceArduino] },
+        this.onBluetoothDeviceFound.bind(this)
+      );
+
+      const stopScanAfterMilliSeconds = 3500;
+      setTimeout(async () => {
+        await BleClient.stopLEScan();
+        this.bluetoothIsScanning = false;
+        console.log('stopped scanning');
+      }, stopScanAfterMilliSeconds);
     } catch (error) {
-      console.error('Error scanning for devices:', error);
+      this.bluetoothIsScanning = false;
+      console.error('scanForBluetoothDevices', error);
     }
+  }
+
+  onBluetoothDeviceFound(result) {
+    console.log('received new scan result', result);
+    this.bluetoothScanResults.push(result);
   }
 
   async connectToDevice() {

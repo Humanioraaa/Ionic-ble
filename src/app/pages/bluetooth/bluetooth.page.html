@@ -5,7 +5,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-button *ngIf="!isConnected" (click)="scanForDevices()">Scan for Devices</ion-button>
+  <ion-button
+      expand="block"
+      [disabled]="bluetoothIsScanning"
+      (click)="scanForBluetoothDevices()"
+    >
+      {{ bluetoothIsScanning?"Scaning":"Scan for bluetooth devices" }}
+    </ion-button>
   <ion-button *ngIf="isConnected" (click)="disconnect()">Disconnect</ion-button>
 
   <ion-item>

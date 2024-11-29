@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
 
   // This variable will be used to check if the device is mobile
   isMobile: boolean = false;
+  selectedIndex: number | undefined;
 
   constructor(private platform: Platform) {}
 

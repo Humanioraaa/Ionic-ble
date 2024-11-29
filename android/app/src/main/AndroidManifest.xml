@@ -44,7 +44,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <!--  Wi-Fi Permissions -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -53,14 +52,11 @@
 
     <!-- Bluetooth Permissions -->
     <!-- Request legacy Bluetooth permissions on older devices. -->
-    <uses-permission
-        android:name="android.permission.BLUETOOTH"/>
-    <uses-permission
-        android:name="android.permission.BLUETOOTH_ADMIN"/>
-    <!-- Needed only if your app looks for Bluetooth devices.
-        You must add an attribute to this permission, or declare the
-        ACCESS_FINE_LOCATION permission, depending on the results when you
-        check location usage in your app. -->
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-feature android:name="android.hardware.bluetooth" android:required="true"/>
+
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
     <!-- Needed only if your app makes the device discoverable to Bluetooth
         devices. -->

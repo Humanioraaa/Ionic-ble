@@ -1,9 +1,10 @@
-<ion-header [translucent]="true">
+<!-- eslint-disable @angular-eslint/template/eqeqeq -->
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
-    <!-- <ion-tab-button slot="end">
-      <ion-icon name="camera"></ion-icon>
-      <ion-label>Photo</ion-label>
-    </ion-tab-button> -->
+    <ion-menu-button slot="start"></ion-menu-button>
+    <ion-title>
+      Pairing
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -39,6 +40,39 @@
   <ion-list *ngIf="scannedDevices.length === 0 && !IsScanning">
     <ion-item>
       <ion-label>No devices found. Please scan again.</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content> -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-menu-button slot="start"></ion-menu-button>
+    <div class='toolbar'>
+      <ion-title>
+        Pairing
+      </ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+   <ion-list
+   *ngIf = "status == 'disconnected '"
+    style="padding-left: 15px; padding-right: 15px;">
+    <ion-button
+      expand="block"
+      [disabled]="IsScanning"
+    >
+      {{ IsScanning ? 'Scanning...' : 'Scan' }}
+      <ion-icon slot="icon-only" name="bluetooth"></ion-icon>
+    </ion-button>
+    <ion-item *ngFor="let device of devicesSubject | async">
+      <ion-label>{{ device.name || "n/a" }}</ion-label>
+      <ion-label>{{ device.id || "n/a" }}</ion-label>
+      <ion-label>RSSI: {{ device.rssi || "n/a" }}</ion-label>
+      <ion-button color="success" (click)="connect(device.id)" shape="round">
+        Connect
+      </ion-button>
     </ion-item>
   </ion-list>
 </ion-content>

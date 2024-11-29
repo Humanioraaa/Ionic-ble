@@ -54,11 +54,9 @@
     <!-- Bluetooth Permissions -->
     <!-- Request legacy Bluetooth permissions on older devices. -->
     <uses-permission
-        android:name="android.permission.BLUETOOTH"
-        android:maxSdkVersion="30" />
+        android:name="android.permission.BLUETOOTH"/>
     <uses-permission
-        android:name="android.permission.BLUETOOTH_ADMIN"
-        android:maxSdkVersion="30" />
+        android:name="android.permission.BLUETOOTH_ADMIN"/>
     <!-- Needed only if your app looks for Bluetooth devices.
         You must add an attribute to this permission, or declare the
         ACCESS_FINE_LOCATION permission, depending on the results when you

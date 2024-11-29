@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>XinHuan</ion-title>
+    <!-- <ion-tab-button slot="end">
+      <ion-icon name="camera"></ion-icon>
+      <ion-label>Photo</ion-label>
+    </ion-tab-button> -->
   </ion-toolbar>
 </ion-header>
 
@@ -11,42 +14,31 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-list>
-    <!-- Scan Button -->
+  <ion-list style="padding-left: 15px; padding-right: 15px;">
+    <h5>Scan Bluetooth Devices</h5><br><br>
     <ion-button
       expand="block"
       [disabled]="IsScanning"
       (click)="scan()"
     >
       {{ IsScanning ? 'Scanning...' : 'Scan' }}
-        <ion-icon slot="icon-only" name="bluetooth"></ion-icon>
+      <ion-icon slot="icon-only" name="bluetooth"></ion-icon>
     </ion-button>
   </ion-list>
 
-  <ion-list>
-    <!-- <ng-container *ngIf="bluetoothScanResults.length > 0">
-      <ion-item *ngFor="let scanResult of bluetoothScanResults">
-        <ion-label>
-          <h2>{{ scanResult.device?.name ?? 'No Name' }}</h2>
-          <p style="font-size: 10px; color: gray;">{{ scanResult.device.deviceId }}</p>
-        </ion-label>
+  <ion-list *ngIf="scannedDevices.length > 0">
+    <ion-list-header>Discovered Devices</ion-list-header>
+    <ion-item *ngFor="let device of scannedDevices">
+      <ion-label>{{ device.name || 'Unnamed Device' }}</ion-label>
+      <ion-button slot="end" (click)="connect(device.deviceId)">
+        Connect
+      </ion-button>
+    </ion-item>
+  </ion-list>
 
-        <ion-buttons slot="end">
-          <ion-button (click)="connectToBluetoothDevice(scanResult)" color="primary">
-            Connect
-          </ion-button>
-          <ion-button (click)="disconnectFromBluetoothDevice(scanResult)" color="danger">
-            Disconnect
-          </ion-button>
-        </ion-buttons>
-      </ion-item>
-    </ng-container> -->
-
-    <!-- Show connected device -->
-    <!-- <ng-container *ngIf="bluetoothConnectedDevice" style="margin-top: 40px">
-      <ion-list-header>
-        <h2>CONNECTED TO: {{ bluetoothConnectedDevice.device.name }} ✅</h2>
-      </ion-list-header>
-    </ng-container> -->
+  <ion-list *ngIf="scannedDevices.length === 0 && !IsScanning">
+    <ion-item>
+      <ion-label>No devices found. Please scan again.</ion-label>
+    </ion-item>
   </ion-list>
 </ion-content>

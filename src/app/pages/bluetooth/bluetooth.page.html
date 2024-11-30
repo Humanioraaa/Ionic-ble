@@ -5,8 +5,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <!-- <ion-loading [isOpen]="loader" message="Fetching....."></ion-loading> -->
+<!-- <ion-content [fullscreen]="true">
+  <ion-loading [isOpen]="loader" message="Fetching....."></ion-loading>
   <ion-card *ngIf="users.length == 0">
     <ion-card-content>
       <p>No Record Data</p>
@@ -26,6 +26,17 @@
           </ion-label>
         </ion-item>
       </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content> -->
+
+<ion-content>
+  <ion-card>
+    <ion-card-content *ngIf="data.length == 0">
+      data N0t Found 404
+    </ion-card-content>
+    <ion-card-content *ngIf="data.length > 0">
+      Data Found Succes 200 OK
     </ion-card-content>
   </ion-card>
 </ion-content>

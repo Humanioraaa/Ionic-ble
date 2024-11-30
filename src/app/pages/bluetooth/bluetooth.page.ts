@@ -16,6 +16,7 @@ interface User {
 })
 export class BluetoothPage implements OnInit{
   users: User[] = [];
+  data = [];
   loader: any;
 
   constructor(
@@ -36,11 +37,17 @@ export class BluetoothPage implements OnInit{
 
     // this.loadCtrl.create({ message: 'Fetching..... '}).then(l => l.present());
 
-    this.http.get("https://reqres.in/api/users?pages=2").subscribe((res: any) => {
+    // this.http.get("https://reqres.in/api/users?pages=2").subscribe((res: any) => {
+    //   console.log(res);
+    //   this.users = res.data;
+    //   this.loadCtrl.dismiss();
+    // });
+
+    this.http.get("https://192.168.4.1/api/data").subscribe((res: any) => {
       console.log(res);
-      this.users = res.data;
+      this.data = res.data;
       // this.loadCtrl.dismiss();
-    })
+    });
 
   }
 }

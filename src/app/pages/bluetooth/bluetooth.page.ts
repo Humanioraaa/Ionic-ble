@@ -34,12 +34,12 @@ export class BluetoothPage implements OnInit{
   // Fetch data from API
   fetchData() {
 
-    this.loadCtrl.create({ message: 'Fetching..... '}).then(l => l.present());
+    // this.loadCtrl.create({ message: 'Fetching..... '}).then(l => l.present());
 
     this.http.get("https://reqres.in/api/users?pages=2").subscribe((res: any) => {
       console.log(res);
       this.users = res.data;
-      this.loadCtrl.dismiss();
+      // this.loadCtrl.dismiss();
     })
 
   }

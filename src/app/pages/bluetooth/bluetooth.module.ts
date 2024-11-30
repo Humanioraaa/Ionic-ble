@@ -6,7 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { BluetoothPageRoutingModule } from './bluetooth-routing.module';
 
-import { BluetoothPage } from './bluetooth.page';
+import { BluetoothPage} from './bluetooth.page';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { BluetoothPage } from './bluetooth.page';
     IonicModule,
     BluetoothPageRoutingModule
   ],
-  declarations: [BluetoothPage]
+  declarations: [BluetoothPage],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class BluetoothPageModule {}

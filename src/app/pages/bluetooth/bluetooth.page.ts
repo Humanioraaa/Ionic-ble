@@ -1,29 +1,46 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../services/api.service';
+import { LoadingController } from '@ionic/angular';
+
+interface User {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+}
 
 @Component({
-  selector: 'app-bluetooth',
-  templateUrl: 'bluetooth.page.html',
-  styleUrls: ['bluetooth.page.scss'],
+  selector: 'app-graph',
+  templateUrl: './bluetooth.page.html',
+  styleUrls: ['./bluetooth.page.scss'],
 })
-export class BluetoothPage implements OnInit {
-  analogValue: number = 0;  // Variable to store the analog value
+export class BluetoothPage implements OnInit{
+  users: User[] = [];
+  loader: any;
 
-  constructor(private apiService: ApiService) {}
+  constructor(
+    private http: HttpClient,
+    private loadCtrl: LoadingController
+  ) {}
 
+  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit() {
-    this.fetchAnalogData();
   }
 
-  fetchAnalogData() {
-    this.apiService.getAnalogValue().subscribe(
-      (response) => {
-        console.log(response); // Log response for debugging
-        this.analogValue = response.analogValue;  // Get the analog value from the response
-      },
-      (error) => {
-        console.error('Error fetching data', error);  // Handle error
-      }
-    );
+  ionViewDidEnter(){
+   this.fetchData();
+  }
+
+  // Fetch data from API
+  fetchData() {
+
+    this.loadCtrl.create({ message: 'Fetching..... '}).then(l => l.present());
+
+    this.http.get("https://reqres.in/api/users?pages=2").subscribe((res: any) => {
+      console.log(res);
+      this.users = res.data;
+      this.loadCtrl.dismiss();
+    })
+
   }
 }

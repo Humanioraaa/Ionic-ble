@@ -28,6 +28,7 @@
     "@capacitor/haptics": "6.0.2",
     "@capacitor/keyboard": "6.0.3",
     "@capacitor/status-bar": "6.0.2",
+    "@ionic-native/network": "^5.36.0",
     "@ionic/angular": "^8.0.0",
     "chart.js": "^4.4.6",
     "ionicons": "^7.0.0",

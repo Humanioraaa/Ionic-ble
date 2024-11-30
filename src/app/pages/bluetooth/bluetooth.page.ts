@@ -9,6 +9,7 @@ interface User {
   email: string;
 }
 
+
 @Component({
   selector: 'app-graph',
   templateUrl: './bluetooth.page.html',

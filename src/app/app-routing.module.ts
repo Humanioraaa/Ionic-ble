@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'start',
-    loadChildren: () => import('./pages/bluetooth/bluetooth.module').then( m => m.BluetoothPageModule)
+    loadChildren: () => import('./pages/bluetooth/bluetooth.module').then( m => m.BluetoothPageModule),
   },
   {
     path: 'graph',

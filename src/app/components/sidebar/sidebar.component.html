@@ -1,0 +1,44 @@
+<div id="left-sidebar" class="sidebar">
+  <button type="button" class="btn-toggle-offcanvas">
+    <i class="fa fa-arrow-left"></i>
+  </button>
+  <div class="sidebar-scroll">
+    <div class="user-account">
+      <img src="assets/images/user.png" class="rounded-circle user-photo" alt="User Profile Picture">
+      <div class="dropdown">
+        <span>Welcome,</span>
+        <a href="" class="dropdown-toggle user-name">
+          <strong>Test User</strong>
+        </a>
+      </div>
+      <hr>
+    </div>
+
+    <div class="tab-content padding-0">
+      <div class="tab-pane active" id="menu">
+        <nav id="left-sidebar-nav" class="sidebar-nav">
+          <ul id="main-menu" class="metismenu li_animation_delay">
+            <li>
+              <a routerLink="/home" class="nav-link">
+                <i class="fa fa-dashboard"></i>
+                <span>Dashboard</span>
+              </a>
+              <a routerLink="/start" class="nav-link">
+                <i class="fa fa-bluetooth"></i>
+                <span>Start Bluetooth</span>
+              </a>
+              <a routerLink="/graph" class="nav-link">
+                <i class="fa fa-chart-bar"></i>
+                <span>Graph</span>
+              </a>
+              <a routerLink="/setting" class="nav-link">
+                <i class="fa fa-cogs"></i>
+                <span>Settings</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
